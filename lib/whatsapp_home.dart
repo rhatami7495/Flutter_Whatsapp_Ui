@@ -24,7 +24,7 @@ class WhatsappHomeState extends State<WhatsAppHome> with SingleTickerProviderSta
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff075e54),
+        backgroundColor: Theme.of(context).primaryColor,
         title:  Text("WhatsApp"),
         elevation: 5,
         bottom: TabBar(
@@ -56,6 +56,11 @@ class WhatsappHomeState extends State<WhatsAppHome> with SingleTickerProviderSta
           StatusScreen(),
           CallScreen(),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:Theme.of(context).colorScheme.secondary,
+        onPressed: (){},
+        child:Icon(Icons.message,color: Colors.white,),
       ),
     );
   }

@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'WhatsAppUi',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // fontFamily: 'MyFont',
         primaryColor: Color(0xff075e54)
+        ,colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xff25d366)),
       ),
       home: WhatsAppHome(),
     );
