@@ -16,9 +16,9 @@ class ChatScreen extends StatelessWidget {
                 height: 10,
               ),
               GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return InfoChatScreen(chatModel: fakeData[index]);
-                })),
+                onTap: () {
+                  _navigateAndDisplaySomeMessage(context,fakeData[index]);
+                },
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(fakeData[index].avatarUrl),
@@ -50,4 +50,14 @@ class ChatScreen extends StatelessWidget {
           );
         });
   }
+  
+  _navigateAndDisplaySomeMessage(BuildContext context,ChatModel chatModel) async {
+    final result = await Navigator.push(context, MaterialPageRoute(builder: (context){
+      return InfoChatScreen(chatModel: chatModel);
+    }));
+    
+    //use snackBar
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(result)));
+  }
+  
 }

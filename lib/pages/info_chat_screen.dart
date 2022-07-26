@@ -17,7 +17,7 @@ class InfoChatScreen extends StatelessWidget{
           children: [
             GestureDetector(
               onTap: (){
-                Navigator.pop(context);
+                Navigator.pop(context,"Hi ${chatModel.name}");
               },
               child: Icon(Icons.arrow_back,),
             ),
