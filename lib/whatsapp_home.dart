@@ -22,51 +22,108 @@ class WhatsappHomeState extends State<WhatsAppHome>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text("WhatsApp"),
-        elevation: 5,
-        bottom: TabBar(
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   title: Text("WhatsApp"),
+      //   elevation: 5,
+      //   bottom: TabBar(
+      //     controller: tabController,
+      //     indicatorColor: Colors.white,
+      //     tabs: [
+      //       Tab(icon: Icon(Icons.camera_alt)),
+      //       Tab(text: "Chats"),
+      //       Tab(text: "Status"),
+      //       Tab(text: "Calls"),
+      //     ],
+      //   ),
+      //   actions: [
+      //     Icon(Icons.search),
+      //     PopupMenuButton<String>(
+      //         onSelected: (String choose) {},
+      //         itemBuilder: (BuildContext context) {
+      //           return [
+      //             PopupMenuItem(value: "new_group", child: Row(
+      //               mainAxisAlignment: MainAxisAlignment.center,
+      //               children: [
+      //                 Text("New Group")
+      //               ],
+      //             )),
+      //             PopupMenuItem(value: "setting", child: Row(
+      //               mainAxisAlignment: MainAxisAlignment.center,
+      //               children: [
+      //                 Text("Setting")
+      //               ],
+      //             ))
+      //           ];
+      //         })
+      //   ],
+      // ),
+      // body: TabBarView(
+      //   controller: tabController,
+      //   children: [
+      //     CameraScreen(),
+      //     ChatScreen(),
+      //     StatusScreen(),
+      //     CallScreen(),
+      //   ],
+      // ),
+
+
+
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+          return <Widget>[
+            SliverAppBar(
+              backgroundColor: Theme.of(context).primaryColor,
+              pinned: true,
+              floating: true,
+              title: Text("WhatsApp"),
+              elevation: 5,
+              bottom: TabBar(
+                controller: tabController,
+                indicatorColor: Colors.white,
+                tabs: [
+                  Tab(icon: Icon(Icons.camera_alt)),
+                  Tab(text: "Chats"),
+                  Tab(text: "Status"),
+                  Tab(text: "Calls"),
+                ],
+              ),
+              actions: [
+                Icon(Icons.search),
+                PopupMenuButton<String>(
+                    onSelected: (String choose) {},
+                    itemBuilder: (BuildContext context) {
+                      return [
+                        PopupMenuItem(value: "new_group", child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("New Group")
+                          ],
+                        )),
+                        PopupMenuItem(value: "setting", child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Setting")
+                          ],
+                        ))
+                      ];
+                    })
+              ],
+            )
+          ];
+        },
+        body: TabBarView(
           controller: tabController,
-          indicatorColor: Colors.white,
-          tabs: [
-            Tab(icon: Icon(Icons.camera_alt)),
-            Tab(text: "Chats"),
-            Tab(text: "Status"),
-            Tab(text: "Calls"),
+          children: [
+            CameraScreen(),
+            ChatScreen(),
+            StatusScreen(),
+            CallScreen(),
           ],
         ),
-        actions: [
-          Icon(Icons.search),
-          PopupMenuButton<String>(
-              onSelected: (String choose) {},
-              itemBuilder: (BuildContext context) {
-                return [
-                  PopupMenuItem(value: "new_group", child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("New Group")
-                    ],
-                  )),
-                  PopupMenuItem(value: "setting", child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Setting")
-                    ],
-                  ))
-                ];
-              })
-        ],
       ),
-      body: TabBarView(
-        controller: tabController,
-        children: [
-          CameraScreen(),
-          ChatScreen(),
-          StatusScreen(),
-          CallScreen(),
-        ],
-      ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {},
