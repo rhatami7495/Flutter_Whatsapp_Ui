@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/models/chat_model.dart';
+import 'package:whatsapp/pages/info_chat_screen.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -12,31 +13,36 @@ class ChatScreen extends StatelessWidget {
               index == 0
                   ? Container()
                   : Divider(
-                      height: 10,
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return InfoChatScreen(chatModel: fakeData[index]);
+                })),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(fakeData[index].avatarUrl),
+                    backgroundColor: Colors.grey,
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        fakeData[index].name,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        fakeData[index].time,
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                  subtitle: Container(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text(
+                      fakeData[index].message,
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(fakeData[index].avatarUrl),
-                  backgroundColor: Colors.grey,
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      fakeData[index].name,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      fakeData[index].time,
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  ],
-                ),
-                subtitle: Container(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Text(
-                    fakeData[index].message,
-                    style: TextStyle(color: Colors.grey, fontSize: 13),
                   ),
                 ),
               )

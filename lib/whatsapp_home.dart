@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp/pages/call_screen.dart';
 import 'package:whatsapp/pages/camera_screen.dart';
 import 'package:whatsapp/pages/chat_screen.dart';
+import 'package:whatsapp/pages/create_chat_screen.dart';
 import 'package:whatsapp/pages/status_screen.dart';
 
 class WhatsAppHome extends StatefulWidget {
@@ -68,10 +69,8 @@ class WhatsappHomeState extends State<WhatsAppHome>
       //   ],
       // ),
 
-
-
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               backgroundColor: Theme.of(context).primaryColor,
@@ -92,21 +91,32 @@ class WhatsappHomeState extends State<WhatsAppHome>
               actions: [
                 Icon(Icons.search),
                 PopupMenuButton<String>(
-                    onSelected: (String choose) {},
+                    onSelected: (String choose) {
+                      if(choose=='setting'){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                         return CameraScreen();
+                        }));
+                      }
+                      else if(choose=='new_group'){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return StatusScreen();
+                        }));
+                      }
+                    },
                     itemBuilder: (BuildContext context) {
                       return [
-                        PopupMenuItem(value: "new_group", child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("New Group")
-                          ],
-                        )),
-                        PopupMenuItem(value: "setting", child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Setting")
-                          ],
-                        ))
+                        PopupMenuItem(
+                            value: "new_group",
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text("New Group")],
+                            )),
+                        PopupMenuItem(
+                            value: "setting",
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text("Setting")],
+                            ))
                       ];
                     })
               ],
@@ -126,7 +136,11 @@ class WhatsappHomeState extends State<WhatsAppHome>
 
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CreateChatScreen();
+          }));
+        },
         child: Icon(
           Icons.message,
           color: Colors.white,
